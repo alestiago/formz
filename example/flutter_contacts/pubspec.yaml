@@ -12,11 +12,14 @@ dependencies:
     path: packages/contacts_api
   contacts_repository:
     path: packages/contacts_repository
+  equatable: ^2.0.3
   flutter:
     sdk: flutter
   flutter_bloc: ^8.0.1
   flutter_localizations:
     sdk: flutter
+  formz:
+    path: ../../
   intl: ^0.17.0
   local_storage_contacts_api:
     path: packages/local_storage_contacts_api
