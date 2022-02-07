@@ -13,5 +13,5 @@ abstract class ContactsApi {
   /// Saves a [Contact].
   ///
   /// If a [Contact] with the same id already exists, it will be replaced.
-  Future<void> saveContact(Contact todo);
+  Future<void> saveContact(Contact contact);
 }

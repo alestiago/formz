@@ -6,13 +6,13 @@ import 'package:test/test.dart';
 
 class MockContactsApi extends Mock implements ContactsApi {}
 
-class FakeTodo extends Fake implements Contact {}
+class FakeContact extends Fake implements Contact {}
 
 void main() {
   group('ContactsRepository', () {
     late ContactsApi api;
 
-    final todos = [
+    final contacts = [
       Contact(
         id: '1',
         firstName: 'firstName',
@@ -28,12 +28,12 @@ void main() {
     ];
 
     setUpAll(() {
-      registerFallbackValue(FakeTodo());
+      registerFallbackValue(FakeContact());
     });
 
     setUp(() {
       api = MockContactsApi();
-      when(() => api.getContacts()).thenAnswer((_) => Stream.value(todos));
+      when(() => api.getContacts()).thenAnswer((_) => Stream.value(contacts));
       when(() => api.saveContact(any())).thenAnswer((_) async {});
     });
 
@@ -48,7 +48,7 @@ void main() {
       });
     });
 
-    group('getTodos', () {
+    group('getContacts', () {
       test('makes correct api request', () {
         final subject = createSubject();
 
@@ -60,26 +60,26 @@ void main() {
         verify(() => api.getContacts()).called(1);
       });
 
-      test('returns stream of current list todos', () {
+      test('returns stream of current list contacts', () {
         expect(
           createSubject().getContacts(),
-          emits(todos),
+          emits(contacts),
         );
       });
     });
 
-    group('saveTodo', () {
+    group('saveContacts', () {
       test('makes correct api request', () {
-        final newTodo = Contact(
+        final newContact = Contact(
           id: '4',
           firstName: 'firstName',
         );
 
         final subject = createSubject();
 
-        expect(subject.saveContact(newTodo), completes);
+        expect(subject.saveContact(newContact), completes);
 
-        verify(() => api.saveContact(newTodo)).called(1);
+        verify(() => api.saveContact(newContact)).called(1);
       });
     });
   });
