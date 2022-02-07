@@ -15,12 +15,15 @@ void main() {
     final todos = [
       Contact(
         id: '1',
+        firstName: 'firstName',
       ),
       Contact(
         id: '2',
+        firstName: 'firstName',
       ),
       Contact(
         id: '3',
+        firstName: 'firstName',
       ),
     ];
 
@@ -69,6 +72,7 @@ void main() {
       test('makes correct api request', () {
         final newTodo = Contact(
           id: '4',
+          firstName: 'firstName',
         );
 
         final subject = createSubject();

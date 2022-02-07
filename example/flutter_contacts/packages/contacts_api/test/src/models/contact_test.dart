@@ -9,6 +9,7 @@ void main() {
     }) {
       return Contact(
         id: id,
+        firstName: 'firstName',
       );
     }
 
