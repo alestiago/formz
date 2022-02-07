@@ -9,7 +9,10 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:contacts_api/contacts_api.dart';
+import 'package:contacts_repository/contacts_repository.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_contacts/app/view/app.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -25,15 +28,19 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap(FutureOr<Widget> Function() builder) async {
+Future<void> bootstrap({required ContactsApi contactsApi}) async {
   FlutterError.onError = (details) {
     log(details.exceptionAsString(), stackTrace: details.stack);
   };
 
+  final contactsRepository = ContactsRepository(contactsApi: contactsApi);
+
   await runZonedGuarded(
     () async {
       await BlocOverrides.runZoned(
-        () async => runApp(await builder()),
+        () async => runApp(
+          App(contactsRepository: contactsRepository),
+        ),
         blocObserver: AppBlocObserver(),
       );
     },

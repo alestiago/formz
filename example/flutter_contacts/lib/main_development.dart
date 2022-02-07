@@ -5,9 +5,16 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
-import 'package:flutter_contacts/app/app.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_contacts/bootstrap.dart';
+import 'package:local_storage_contacts_api/local_storage_contacts_api.dart';
 
-void main() {
-  bootstrap(() => const App());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final contactsApi = LocalStorageContactsApi(
+    plugin: await SharedPreferences.getInstance(),
+  );
+
+  await bootstrap(contactsApi: contactsApi);
 }

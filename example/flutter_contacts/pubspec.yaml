@@ -8,6 +8,8 @@ environment:
 
 dependencies:
   bloc: ^8.0.2
+  contacts_api:
+    path: packages/contacts_api
   contacts_repository:
     path: packages/contacts_repository
   flutter:
@@ -16,7 +18,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.17.0
-
+  local_storage_contacts_api:
+    path: packages/local_storage_contacts_api
 
 dev_dependencies:
   bloc_test: ^9.0.2
