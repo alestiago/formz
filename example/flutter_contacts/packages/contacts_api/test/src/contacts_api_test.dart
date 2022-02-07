@@ -1,7 +1,22 @@
-// ignore_for_file: prefer_const_constructors
 import 'package:contacts_api/contacts_api.dart';
 import 'package:test/test.dart';
 
+class TestContactsApi extends ContactsApi {
+  TestContactsApi() : super();
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) {
+    return super.noSuchMethod(invocation);
+  }
+}
+
 void main() {
-  // TODO(alestiago): test this.
+  group('ContactsApi', () {
+    test('can be constructed', () {
+      expect(
+        () => TestContactsApi(),
+        returnsNormally,
+      );
+    });
+  });
 }
